@@ -1,6 +1,7 @@
 import laspy
 import numpy as np
 import matplotlib.pyplot as plt
+from dotenv import dotenv_values
 
 
 # Particle class to store information about a point in 3D space
@@ -110,7 +111,10 @@ class Octree:
 
 
 if __name__ == "__main__":
-    las = laspy.read("FILE LOCATION")  # Read LAS data file
+    # Also you can use .env
+    config = dotenv_values(".env")
+    file_location = config['file_location']
+    las = laspy.read(file_location)  # Read LAS data file
     data = {
         'X': las.x,
         'Y': las.y,
